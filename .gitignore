@@ -1,0 +1,10 @@
+@"
+node_modules/
+.next/
+.env
+.env.*
+dist/
+build/
+server/uploads/*
+!server/uploads/.gitkeep
+"@ | Set-Content .gitignore
