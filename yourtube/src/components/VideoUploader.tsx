@@ -7,7 +7,11 @@ import { Label } from "./ui/label";
 import { Progress } from "./ui/progress";
 import axiosInstance from "@/lib/axiosinstance";
 
-const VideoUploader = ({ channelId, channelName }: any) => {
+const VideoUploader = ({
+  channelId,
+  channelName,
+  onUploadSuccess,
+}: any) => {
   const [isUploading, setIsUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [videoFile, setVideoFile] = useState<File | null>(null);
@@ -74,7 +78,8 @@ const VideoUploader = ({ channelId, channelName }: any) => {
         },
       });
       toast.success("Upload successfully");
-      resetForm();
+resetForm();
+onUploadSuccess?.();
     } catch (error) {
       console.error("Error uploading video:", error);
       toast.error("There was an error uploading your video. Please try again.");

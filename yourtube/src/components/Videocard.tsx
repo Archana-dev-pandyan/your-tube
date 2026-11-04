@@ -1,3 +1,4 @@
+
 import Link from "next/link";
 import { formatDistanceToNow } from "date-fns";
 import { Avatar, AvatarFallback } from "./ui/avatar";
@@ -7,7 +8,10 @@ const BACKEND_URL =
 
 export default function VideoCard({ video }: any) {
   const videoPath = video?.filepath?.replace(/\\/g, "/");
-  const videoUrl = videoPath ? `${BACKEND_URL}/${videoPath}` : "";
+
+  const videoUrl = videoPath
+    ? `${BACKEND_URL}/${videoPath.replace(/^\/+/, "")}`
+    : "";
 
   return (
     <Link href={`/watch/${video?._id}`} className="group">
