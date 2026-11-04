@@ -19,9 +19,16 @@ app.use("/uploads", express.static(path.join("uploads")));
 app.get("/", (req, res) => {
   res.send("You tube backend is working");
 });
+app.get("/test-video-route", (req, res) => {
+  res.json({
+    message: "Video route diagnostic",
+    videoRoutesLoaded: true,
+  });
+});
 app.use(bodyParser.json());
 app.use("/user", userroutes);
 app.use("/video", videoroutes);
+console.log("Video routes mounted");
 app.use("/like", likeroutes);
 app.use("/watch", watchlaterroutes);
 app.use("/history", historyrroutes);
